@@ -1,8 +1,11 @@
 #!/bin/bash
+OS=linux
+ARCH=amd64
+VERSION=1.13.4
 if ! [ -d "/usr/local/go" ] ; then
 	echo "Downloading GO..."
-	sudo curl https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz --output go1.13.4.linux-amd64.tar.gz
-	sudo tar -C /usr/local -xzf go1.13.4.linux-amd64.tar.gz
+	sudo curl https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz --output go$VERSION.$OS-$ARCH.tar.gz
+	sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
 fi
 
 if ! [ -f "$HOME/go/bin/drive" ] ; then
