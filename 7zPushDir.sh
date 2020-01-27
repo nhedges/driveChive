@@ -1,13 +1,5 @@
 #!/bin/bash
-if ! (($# >= 2)) ; then
-	echo "Usage: 7zPushDir.sh [filename of 7z archive] [directory to push]"
-	exit 0
-fi
-echo "Began "$(date)
-SCRIPT_DIR=$(dirname $(realpath -s $0))
-7z a -p -mhe "$SCRIPT_DIR/Google_Drive/$1" "$2"/*
-echo "7z compression completed "$(date)
-$HOME/go/bin/drive push -ignore-checksum=false -no-prompt $SCRIPT_DIR/Google_Drive/$1
-echo "Upload completed "$(date)
-md5sum $SCRIPT_DIR/Google_Drive/$1
-echo "Checksum completed "$(date)
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+#a useful one-liner which will give you the full directory name of the script no matter where it is being called from.
+"$DIR/7zPushFiles.sh" "$@"/*
+
