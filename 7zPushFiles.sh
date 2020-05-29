@@ -4,10 +4,10 @@ if ! (($# >= 2)) ; then
 	exit 0
 fi
 echo "Began "$(date)
-SCRIPT_DIR=$(dirname $(realpath -s $0))
+SCRIPT_DIR=$(dirname $(realpath $0))
 7z a -p -mhe "$SCRIPT_DIR/Google_Drive/$1" "${@:2}"
 echo "7z compression completed "$(date)
-$HOME/go/bin/drive push -ignore-checksum=false -no-prompt $SCRIPT_DIR/Google_Drive/$1
+$SCRIPT_DIR/gocode/bin/drive push -ignore-checksum=false -no-prompt $SCRIPT_DIR/Google_Drive/$1
 echo "Upload completed "$(date)
 md5sum $SCRIPT_DIR/Google_Drive/$1
 echo "Checksum completed "$(date)

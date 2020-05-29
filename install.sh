@@ -28,9 +28,14 @@ if ! [ -d "$SCRIPTDIR/go" ] ; then
 	sudo tar -C "$SCRIPTDIR" -xzf go$VERSION.$OS-$ARCH.tar.gz
 fi
 export GOROOT=$SCRIPTDIR/go
+
+if ! [ -d "$SCRIPTDIR/gocode" ] ; then
+  mkdir "$SCRIPTDIR/gocode"
+fi
+
 export GOPATH=$SCRIPTDIR/gocode
 
-if ! [ -f "$HOME/go/bin/drive" ] ; then
+if ! [ -f "$GOPATH/bin/drive" ] ; then
 	echo "Installing Drive Client, please wait..."
 	$GOROOT/bin/go get -u github.com/odeke-em/drive/cmd/drive
 fi
@@ -42,8 +47,8 @@ fi
 if ! [ -d "$HOME/bin" ] ; then
   mkdir "$HOME/bin"
 fi
-ln -s $SCRIPTDIR/7zPushFiles.sh $HOME/bin/7zPushFiles
-ln -s $SCRIPTDIR/7zPushDir.sh $HOME/bin/7zPushDir
+ln -s $SCRIPTDIR/7zPushFiles.sh $HOME/bin/7zPushFiles-test
+ln -s $SCRIPTDIR/7zPushDir.sh $HOME/bin/7zPushDir-test
 
 echo "Initializing Google Drive directory. Ready to Log in."
 $GOPATH/bin/drive init $SCRIPTDIR/Google_Drive
