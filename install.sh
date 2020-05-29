@@ -42,7 +42,7 @@ fi
 
 if ! [ $(which 7z) ] ; then # if 7zip is not installed, install it.
   echo "Installing 7zip using apt-get..."
-  sudo apt-get install p7zip
+  sudo apt-get install p7zip-full
 fi
 
 if ! [ -d "Google_Drive" ] ; then
@@ -52,8 +52,8 @@ fi
 if ! [ -d "$HOME/bin" ] ; then
   mkdir "$HOME/bin"
 fi
-ln -s $SCRIPTDIR/7zPushFiles.sh $HOME/bin/7zPushFiles-test
-ln -s $SCRIPTDIR/7zPushDir.sh $HOME/bin/7zPushDir-test
+ln -s $SCRIPTDIR/7zPushFiles.sh $HOME/bin/7zPushFiles
+ln -s $SCRIPTDIR/7zPushDir.sh $HOME/bin/7zPushDir
 
 echo "Initializing Google Drive directory. Ready to Log in."
 $GOPATH/bin/drive init $SCRIPTDIR/Google_Drive
